@@ -35,9 +35,9 @@ INFOBIP_BASE_URL = 'https://api.infobip.com'
 SECRET_KEY = 'django-insecure-cm48=u$zftl5%de(2u@t5awz!=22&cy5ad5j$az^@jm0slsb$a'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -54,6 +54,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'accounts',
+    'blogs',
+    'places',
 ]
 AUTH_USER_MODEL = "accounts.UserModel"
 
@@ -150,7 +152,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / 'static'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
