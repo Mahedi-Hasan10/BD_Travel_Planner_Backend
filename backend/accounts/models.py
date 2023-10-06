@@ -38,7 +38,6 @@ class UserModel(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(
         null=False, blank=False, validators=[validate_email],max_length=50
     )
-
     otp =models.CharField(max_length=6)
     otp_expire = models.DateTimeField(blank=True, null= True)
     max_otp_try = models.CharField(max_length=2, default=settings.MAX_OTP_TRY)

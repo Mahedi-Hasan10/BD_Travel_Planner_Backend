@@ -2,7 +2,7 @@ from datetime import timedelta,datetime
 from django.conf import settings
 import random
 from rest_framework import serializers
-
+from rest_framework.authtoken.models import Token
 from .models import UserModel
 from accounts.utils import send_otp
 
@@ -54,7 +54,8 @@ class UserSerializer(serializers.ModelSerializer):
             max_otp_try =settings.MAX_OTP_TRY,
         )
         user.set_password(validated_data['password1'])
-        user.save()
+        account = user.save()
+        token = Token.objects.get(user=account).key
         send_otp(validated_data['phone_number'],otp)
         return user
     

@@ -66,7 +66,8 @@ class UserViewSet(viewsets.ModelViewSet):
         send_otp(instance.phone_number,otp)
         return Response("Successfully generate new OTP.", status=status.HTTP_200_OK)
    
-    
+
+
 from rest_framework import permissions
 from django.contrib.auth import login,logout
 
@@ -81,6 +82,7 @@ class LoginView(APIView):
         login(request, user)
         return Response(None, status=status.HTTP_202_ACCEPTED)
     
-def user_logout(request):
-    logout(request)
-    return Response({'message': 'Logged out successfully'}, status=status.HTTP_200_OK)
+class LogoutView(APIView):
+        def post(self, request):
+            request.user.auth_token.delete()
+            return Response(status = status.HTTP_200_OK)

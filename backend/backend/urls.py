@@ -24,5 +24,8 @@ urlpatterns = [
     path('', views.home),
     path('api/', include('hotels.urls')),
     path('account/',include('accounts.urls')),
+    path('blogs/',include('blogs.urls')),
+    path('places/',include('places.urls')),
+    path('restaurant/',include('restaurant.urls')),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
